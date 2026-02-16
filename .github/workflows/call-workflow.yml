@@ -4,4 +4,6 @@ jobs:
     call-greeting:
       uses: ./.github/workflows/reusable.yml
       with: 
-        name: "Anononymous"
+          name: "Anononymous"
+      secrets:
+          my_secret: ${{ secrets.MY_SECRET }}

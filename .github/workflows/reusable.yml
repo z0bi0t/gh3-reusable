@@ -6,9 +6,14 @@ on:
                 description: Enther the name
                 required: true
                 type: string
+        secrets:
+            my_secret:
+                description: The secret
 jobs:
     greeting:
         runs-on: ubuntu-latest
         steps:
             - name: Greeting Step
               run: echo "Welcome ${{ inputs.name }}!"
+            - name: Secret Step
+              run: echo "Welcome ${{ secrets.my_secret }}!"
