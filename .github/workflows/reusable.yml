@@ -9,11 +9,19 @@ on:
         secrets:
             my_secret:
                 description: The secret
+        outputs:
+            version:
+                value: ${{ jobs.greeting.outputs.version }}
 jobs:
     greeting:
         runs-on: ubuntu-latest
+        outputs:
+            version: ${{ steps.set-version.outputs.version  }}
         steps:
             - name: Greeting Step
               run: echo "Welcome ${{ inputs.name }}!"
             - name: Secret Step
               run: echo "Welcome ${{ secrets.my_secret }}!"
+            - name: Declare Output
+              id: set-version
+              run: echo "version=0.0.1" >> $GITHUB_OUTPUT

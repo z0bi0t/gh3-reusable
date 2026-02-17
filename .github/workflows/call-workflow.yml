@@ -7,3 +7,9 @@ jobs:
           name: "Anononymous"
       secrets:
           my_secret: ${{ secrets.MY_SECRET }}
+    output-test:
+      needs: call-greeting
+      runs-on: ubuntu-latest
+      steps:
+        - name: Print output
+          run: echo "This output is ${{ needs.call-greeting.outputs.version }}"
